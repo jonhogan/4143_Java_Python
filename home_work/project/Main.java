@@ -5,12 +5,15 @@ class Main {
   public static void main(String[] args) {
    for(int i = 0; i < 6; i++)
    {
-    System.out.println(Random()%50);
+    System.out.println(Random());
    }
   }
 
   static int Random()
 {
-    return (int)(Math.random()*1000);
+    int x = (int)(Math.random()*1000);
+    
+    x = (x%50)+1;
+    return x;
 }
 }
