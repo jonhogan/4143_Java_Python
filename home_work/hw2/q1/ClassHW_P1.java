@@ -10,12 +10,13 @@
 *    encapsulation (20 points)
 */
 
-import java.util.*;
-
 public class ClassHW_P1
 {
     public static void main(String[] args)
     {
+     playerCharacter dave = new playerCharacter();
+     
+     dave.getStrength();
 
     }
 } 

@@ -10,10 +10,10 @@ class Main {
   }
 
   static int Random()
-{
+  {
     int x = (int)(Math.random()*1000);
     
     x = (x%50)+1;
     return x;
-}
+  }
 }
