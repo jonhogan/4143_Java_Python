@@ -1,5 +1,5 @@
 public interface Character {
-        
+    
     int statRoll();
     int health();
     int getStr();
