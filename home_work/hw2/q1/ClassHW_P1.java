@@ -9,14 +9,33 @@
 *    polymorphism (runtime and compile time), abstraction and
 *    encapsulation (20 points)
 */
+import java.util.*;
 
 public class ClassHW_P1
 {
     public static void main(String[] args)
     {
-     playerCharacter dave = new playerCharacter();
+        String name;
+        Scanner scan= new Scanner(System.in);
+        playerChar p1;
+        
+        System.out.println("Name your character");
+        System.out.println("Entering a blank line will give you a default name.");
+        name = scan.nextLine();
+        if (name.equals("")){
+            p1 = new playerChar();
+        }else{
+            p1 = new playerChar(name);
+        }
      
-     dave.getStrength();
+        //System.out.println(p1.getStr());
 
+        System.out.println("Welcome, " + p1.getName() +". On a table before you there is equipment. Prepare for battle!");
+
+
+
+
+
+        scan.close();
     }
 } 

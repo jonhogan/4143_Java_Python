@@ -8,33 +8,49 @@ public class playerChar implements Character{
     int cons;
     int wis;
     int charisma;
-    int playerHP = 0;
+    int maxPlayerHP = 0;
+    int currPlayerHP = maxPlayerHP;
     String name;
     Random rand = new Random();
     int level;
 
+    int d6 = (rand.nextInt(1000)%6)+1;
+    int d20 = (rand.nextInt(1000)%20)+1;
+    int d3 = (rand.nextInt(1000)%3)+1;
 
-    playerChar(String cName){
+
+    playerChar(){
 
         level=0;
+        maxPlayerHP = health();
         str = statRoll();
         intel = statRoll();
         dex = statRoll();
         cons = statRoll();
         wis = statRoll();
         charisma = statRoll();
-        playerHP = health();
+        maxPlayerHP = health();
+        name = "Bob the Nameless";
+    }
+
+    playerChar(String cName){
+
+        level=0;
+        maxPlayerHP = health();
+        str = statRoll();
+        intel = statRoll();
+        dex = statRoll();
+        cons = statRoll();
+        wis = statRoll();
+        charisma = statRoll();
+        maxPlayerHP = health();
         name = cName;
     }
 
     public int statRoll(){
-        int x = rand.nextInt(1000);
-        int y = rand.nextInt(1000);
-        int z = rand.nextInt(1000);
-
-        x = (x%6)+1;
-        y = (y%6)+1;
-        z = (z%6)+1;
+        int x = d6;
+        int y = d6;
+        int z = d6;
 
         return x+y+z;
     }
@@ -51,8 +67,12 @@ public class playerChar implements Character{
             x = (x%6)+4;
         }
 
-        return playerHP + x;
+        return maxPlayerHP + x;
 
+    }
+
+    public String getName(){
+        return name;
     }
 
     public int getStr(){
@@ -77,6 +97,15 @@ public class playerChar implements Character{
 
     public int getCharisma(){
         return charisma;
+    }
+
+    public void updateHealth(int h){
+        if ((currPlayerHP + h) > maxPlayerHP)
+        {
+            currPlayerHP = maxPlayerHP;
+        }else{
+            currPlayerHP += h;
+        }
     }
 
     
