@@ -8,49 +8,34 @@
 *    be caught) that has the following OOP features: inheritance(any),
 *    polymorphism (runtime and compile time), abstraction and
 *    encapsulation (20 points)
+*
 */
-import java.util.*;
 
 public class ClassHW_P1
 {
     public static void main(String[] args)
     {
-        String name;
-        String weapon;
-        Scanner scan= new Scanner(System.in);
-        PlayerChar p1;
-        
-        System.out.println("Name your character");
-        System.out.println("Entering a blank line will give you a default name.\n");
-        name = scan.nextLine();
+        Rectangle rectangle = new Rectangle(3, 9);      //Create rectangle object
 
-        if (name.equals("")){
-            p1 = new PlayerChar();
-        }else{
-            p1 = new PlayerChar(name);
-        }
+        System.out.println("Height is: " + rectangle.getHeight() + "\tLength is: " + rectangle.getLength());   //Print out the height and length of the rectangle
+        System.out.println("Area of the rectangle is: " + rectangle.area() + "\n");                            //Print out the area of the rectangle
 
-        Gnoll gnoll = new Gnoll();
-     
-        p1.printStats();
+        rectangle.setHeight(15);        //Change height
+        rectangle.setLength(3);         //Change length
 
-        System.out.println("Welcome, " + p1.getName() +".\n\nYou open your eyes, heavy with sleep. The sound of twigs snapping"
-        + " awakend you. Prepare for battle!\nChoose your weapon: Mace, Dagger, Staff");
-        
-        weapon = scan.nextLine();
+        System.out.println("New height is: " + rectangle.getHeight() + "\tNew length is: " + rectangle.getLength()); //Print out the  new height and length of the rectangle
+        System.out.println("New area of the rectangle is: " + rectangle.area() + "\n\n");                            //Print out the new area of the rectangle
 
-        System.out.println("\nYou ready your " + weapon.toLowerCase() + ". Suddenly a gnoll appears and rushed you!");
+        RectPrism prism = new RectPrism(2, 4, 9);       //Create prism object
 
-        while(p1.currHP < 0 & gnoll.currHP < 0){
-            p1.attack(weapon);
-            gnoll.attack();
-        }
+        System.out.println("Height is: " + prism.getHeight() + "\tLength is: " + prism.getLength() + "\tWidth is: " + prism.getWidth()); //Print out the height, width and length of the prism
+        System.out.println("Area of the prism is: " + prism.area() + "\n");                                                              //Print out the area of the prism
 
+        prism.setHeight(15);            //Change height
+        prism.setLength(3);             //Change length
+        prism.setWidth(13);             //Change width
 
-
-
-
-
-        scan.close();
+        System.out.println("New height is: " + prism.getHeight() + "\tNew length is: " + prism.getLength() + "\tNew width is:" + prism.getWidth());//Print out the new height, width and length of the prism
+        System.out.println("New area of the prism is: " + prism.area());                                                                           //Print out the new area of the prism
     }
 } 
