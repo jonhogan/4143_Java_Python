@@ -13,6 +13,8 @@ public class Rectangle{
         intLength = L;
     }
     
+    //Following two methods implements encapsulation
+    //with the protected variables
     public void setHeight(int h){
         intHeight = h;
     }
