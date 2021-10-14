@@ -1,15 +1,15 @@
 class SyntaxError extends Exception {
-
-    private String exceptionMessage;
-
-    public SyntaxError(String exceptionMessage){
-
-        this.exceptionMessage = ErrorMessage;
-    }
     
-    @Override
-    public String getLocalizedMessage(){
-        
-        return this.exceptionMessage;
+    String ErrorMessage;
+
+    // Set the Error message
+    SyntaxError(String s) {
+        ErrorMessage = s;
     }
+
+    // Return the Error message
+    String getErrorMessage() {
+        return ErrorMessage;
+    }
+
 }

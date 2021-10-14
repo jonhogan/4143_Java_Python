@@ -1,15 +1,14 @@
-class RuntimeError extends Exception{
+public class RuntimeError extends Exception {
 
-    private String exceptionMessage;
-
-    public RuntimeError(String exceptionMessage){
-
-        this.exceptionMessage = exceptionMessage;
-    }
-
-    @Override
-    public String getLocalizedMessage(){
-
-        return  this.exceptionMessage+"\n";
-    }
+        String ErrorMessage;
+    
+        // Set the Error message
+        RuntimeError(String s) {
+            ErrorMessage = s;
+        }
+    
+        // Return the Error message
+        String getErrorMessage() {
+            return ErrorMessage;
+        }
 }
