@@ -21,7 +21,7 @@ public class RectPrism extends Rectangle{
 
     @Override
     public int area(){              //Override area to work with a 3D object
-        return((2*intHeight)+(2*intLength)+(2+intWidth));
+        return(2*(intLength*intWidth)+(2*(intLength+intWidth)*intHeight));
     }
 
     int getWidth(){
