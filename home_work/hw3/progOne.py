@@ -1,0 +1,5 @@
+print('\t    *\n\t   * *\n\t  *   *\n\t *     *\n\t*********')
+print('\t||  ^  ||\n\t||  X  ||\n\t||  v  ||\n\t=========')
+print('\t||  ^  ||\n\t||< X >||\n\t||  v  ||\n\t=========')
+print('\t||  ^  ||\n\t||  X  ||\n\t||  v  ||\n\t=========')
+print('\tWWWWWWWWW\n\t WWWWWWW\n\t  WWWWW\n\t   WWW\n\t    W')
