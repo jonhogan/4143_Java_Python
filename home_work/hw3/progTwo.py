@@ -17,98 +17,306 @@ input on current phase. (35 points)
 
 
 i = 0  #Counter
-isInvalid = True
 
 #Prompt user for number of people to add
 peopleCount=int(input('How many people to enter? '))
-
+firstName = []
+lastName = []
+occupation = []
+address = []
+age = []
+j = 1
 #Loop to add all the people
 while i < peopleCount:
-
-
-    #Input information about people
-    while(isInvalid):
-        j = 1
-        if (j == 1 and peopleCount > 1):
-           firstName=str(input('What is the first person\'s first name?'))
-           j += 1
-        elif (peopleCount == 1):
-            firstName=str(input('What is the person\'s first name?'))
-        elif (j == 2):
-            firstName=str(input('What is the second person\'s first name?'))
-            j += 1
-        elif (j == 3):
-            firstName=str(input('What is the third person\'s first name?'))
-            j += 1
-        else:
-            firstName=str(input('What is the ' +str(j)+'th person\'s first name?'))
-            j += 1
-
-        for idx in range(len(firstName)):
-            if (firstName[idx].isnumeric == False):
-                print('Invalid Input: Alpha charaters only')
-
-        '''
-        except:
-            raise nameError('Invalid Name: Please enter a valid first name')
-        if firstName.isnumeric(): #check if the name is entered as a number
-            ErrorWarning= nameError('Invalid Input: Alpha characters only')
-            print(ErrorWarning)
-        else: 
-            isInvalid = False
-        '''
+    
+    #Set the initial Bool value
+    isValid = False
+    while(not isValid):
         
-    while(True):
-        try:
-            LastName=str(input('What is the persons last  name?'))# user prompt
-        except:
-            raise ValueError('Last Name  is not valid')
-        if LastName.isnumeric(): #chek if occupation contains only numeric value or not
-            ErrorWarning= ValueError('Invalid input, insert correct Last Name using non numeric values')
-            print(ErrorWarning)
-        else: #else if the occupation is correct
-            break
-    
+        #Gets the first name
+        if (j == 1 and peopleCount > 1):
+           fname = input('What is the first person\'s first name? ')
+           j += 1
 
-    # start try catch block that will catch invalid data  whcih consists of nums between 0 and 150
-    
-    while True:
-        try:
-            Age= int((input(' Enter the person Age(must be less than 150).  ')))
-        except ValueError:
-           raise ValueError('Age Entered Was Not Valid')
-        if Age > 150 or Age<0:# age must be between 0 and 150 anything else is error
-            ErrorMessage = ValueError('Age Must Be less that 150 and larger than 0.')
-            print(ErrorMessage)
+        elif (peopleCount == 1):
+            fname = input('What is the person\'s first name? ')
+
+        elif (j == 2):
+            fname = input('What is the second person\'s first name? ')
+            j += 1
+
+        elif (j == 3):
+            fname = input('What is the third person\'s first name? ')
+            j += 1
+
         else:
-            break # once the input is valid, break through the while loop
+            fname = input('What is the ' +str(j)+'th person\'s first name? ')
+            j += 1
 
-    # try catch to read in valid non numeric occupation
-    while(True):
-        try:
-            Occupation= str(input('What is their occupation?'))# prompt the user
-        except:
-            raise ValueError('Occupation is not valid')# if invalid say invalid
-        if Occupation.isnumeric(): #chek if occupation contains only numeric value or not
-            ErrorWarning= ValueError('Invalid input, insert correct occupation using non numeric values')
-            print(ErrorWarning)# printing the error warning
-        else: #else if the occupation is correct
-            break
+        for idx in range(len(fname)):
+            # Error check to ensure the name is alpha only
+            #Prints a message and lets the user re-enter the name 
+            if (fname[idx].isnumeric() == True):
+                print('Invalid Input: Alpha charaters only')
+                break
+            elif (idx == len(fname) - 1):
+                isValid = True
+                firstName.append(fname)
     
-    # try catch me to get valid address
-    while(True):
-        try:
-            Address=str(input(' What is this persons Address?'))
-        except:
-            raise ValueError('address  is not valid')
-        if Address.isnumeric(): #chek if address contains only numeric value or not
-            ErrorWarning= ValueError('address was invalid')
-            print(ErrorWarning)
-        else: #else if the occupation is correct
-            break
+    #Reset the initial Bool value
+    isValid = False
+    while(not isValid):
+        
+        #Gets the last name
+        if (j == 1 and peopleCount > 1):
+           lname = input('What is the first person\'s last name? ')
 
-    # format the output for each individual person to be this  formatted
-    print(FirstName, LastName, ' aged', Age,' years, worked as a ',Occupation,
-             ' and currently lives at ',Address,'.\n')
-    i+=1# increment the ocunter variable go back to loop begining until satisfied
-# end of the program exitting out
+        elif (peopleCount == 1):
+            lname = input('What is the person\'s last name? ')
+
+        elif (j == 2):
+            lname = input('What is the second person\'s last name? ')
+     
+        elif (j == 3):
+            lname = input('What is the third person\'s last name? ')
+       
+        else:
+            lname = input('What is the ' +str(j)+'th person\'s last name? ')
+        
+
+        for idx in range(len(lname)):
+            # Error check to ensure the name is alpha only
+            #Prints a message and lets the user re-enter the name 
+            if (lname[idx].isnumeric() == True):
+                print('Invalid Input: Alpha charaters only')
+                break
+
+            elif (idx == len(lname) - 1):
+                isValid = True
+                lastName.append(lname)
+
+    #Reset the initial Bool value
+    isValid = False
+    while(not isValid):
+
+        #Gets the age
+        if (j == 1 and peopleCount > 1):
+            getAge = input('What is the first person\'s age? ')
+
+        elif (peopleCount == 1):
+            getAge = input('What is the person\'s age? ')
+
+        elif (j == 2):
+            getAge = input('What is the second person\'s age? ')
+     
+        elif (j == 3):
+            getAge = input('What is the third person\'s age? ')
+       
+        else:
+            getAge = input('What is the ' +str(j)+'th person\'s age? ')
+        
+
+        for idx in range(len(getAge)):
+            # Error check to ensure the age is numeric only
+            #Prints a message and lets the user re-enter the age 
+            if (getAge[idx].isnumeric() == False):
+                print('Invalid Input: Numeric charaters only')
+                break
+            if (int(getAge) < 0 or int(getAge) > 150):
+                print('Invalid input: Age should be between 0 and 150')
+
+            elif (idx == len(getAge) - 1):
+                isValid = True
+                age.append(getAge)
+
+    #Reset the initial Bool value
+    isValid = False
+    while(not isValid):
+        
+        #Gets the occupation name
+        if (j == 1 and peopleCount > 1):
+           getJob = input('What is the first person\'s occupation? ')
+
+        elif (peopleCount == 1):
+            getJob = input('What is the person\'s occupation? ')
+
+        elif (j == 2):
+            getJob = input('What is the second person\'s occupation? ')
+     
+        elif (j == 3):
+            getJob = input('What is the third person\'s occupation? ')
+       
+        else:
+            getJob = input('What is the ' +str(j)+'th person\'s occupation? ')
+        
+
+        for idx in range(len(getJob)):
+            # Error check to ensure the occupation is alpha only
+            #Prints a message and lets the user re-enter the job 
+            if (getJob[idx].isnumeric() == True):
+                print('Invalid Input: Alpha charaters only')
+                break
+
+            elif (idx == len(getJob) - 1):
+                isValid = True
+                occupation.append(getJob)
+
+    #Reset the initial Bool value
+    isValid = False
+    while(not isValid):
+        
+        #Gets the street number
+        if (j == 1 and peopleCount > 1):
+           strtNum = input('What is the first person\'s street number? ')
+
+        elif (peopleCount == 1):
+            strtNum = input('What is the person\'s street number? ')
+
+        elif (j == 2):
+            strtNum = input('What is the second person\'s street number? ')
+     
+        elif (j == 3):
+            strtNum = input('What is the third person\'s street number? ')
+       
+        else:
+            strtNum = input('What is the ' +str(j)+'th person\'s street number? ')
+        
+
+        for idx in range(len(strtNum)):
+            # Error check to ensure the number is numeric only
+            #Prints a message and lets the user re-enter the street number 
+            if (strtNum[idx].isnumeric() == False):
+                print('Invalid Input: Numeric charaters only')
+                break
+
+            elif (idx == len(strtNum) - 1):
+                isValid = True
+
+    
+        
+    #Gets the street name
+    if (j == 1 and peopleCount > 1):
+           strtName = input('What is the first person\'s street name? ')
+
+    elif (peopleCount == 1):
+        strtName = input('What is the person\'s street name? ')
+
+    elif (j == 2):
+        strtName = input('What is the second person\'s street name? ')
+     
+    elif (j == 3):
+        strtName = input('What is the third person\'s street name? ')
+       
+    else:
+        strtName = input('What is the ' +str(j)+'th person\'s street name? ')
+        
+        #Alpha numeric error checking does't work for a street name, as some streets
+        #consist of alpha/numeric names such as E 5th Street
+    '''
+        for idx in range(len(strtName)):
+            # Error check to ensure the Street Name is alpha only
+            #Prints a message and lets the user re-enter the name 
+            if (strtName[idx].isnumeric() == True):
+                print('Invalid Input: Alpha charaters only')
+                break
+            elif (idx == len(strtName) - 1):
+               isValid = True
+    '''
+    #Reset the initial Bool value
+    isValid = False
+    while(not isValid):
+        
+        #Gets the city name
+        if (j == 1 and peopleCount > 1):
+           cityName = input('What is the first person\'s city\'s name? ')
+
+        elif (peopleCount == 1):
+            cityName = input('What is the person\'s city\'s name? ')
+
+        elif (j == 2):
+            cityName = input('What is the second person\'s city\'s name? ')
+     
+        elif (j == 3):
+            cityName = input('What is the third person\'s city\'s name? ')
+       
+        else:
+            cityName = input('What is the ' +str(j)+'th person\'s city\'s name? ')
+        
+
+        for idx in range(len(cityName)):
+            # Error check to ensure the Street Name is alpha only
+            #Prints a message and lets the user re-enter the name 
+            if (cityName[idx].isnumeric() == True):
+                print('Invalid Input: Alpha charaters only')
+                break
+            elif (idx == len(cityName) - 1):
+                isValid = True
+
+    #Reset the initial Bool value
+    isValid = False
+    while(not isValid):
+        
+        #Gets the State name
+        if (j == 1 and peopleCount > 1):
+           stateName = input('What is the first person\'s state\'s name abbreviation? ')
+
+        elif (peopleCount == 1):
+            stateName = input('What is the person\'s state\'s name abbreviation? ')
+
+        elif (j == 2):
+            stateName = input('What is the second person\'s state\'s name abbreviation? ')
+     
+        elif (j == 3):
+            stateName = input('What is the third person\'s state\'s name abbreviation? ')
+       
+        else:
+            stateName = input('What is the ' +str(j)+'th person\'s state\'s name abbreviation? ')
+        
+
+        for idx in range(len(stateName)):
+            # Error check to ensure the Street Name is alpha only
+            #Prints a message and lets the user re-enter the name 
+            if (stateName[idx].isnumeric() == True or len(stateName) > 2):
+                print('Invalid Input: The abbreviation should be alpha character and consist of two letters only')
+                print('For example, Texas should be entered as "TX"')
+                break
+            elif (idx == len(stateName) - 1):
+                isValid = True
+
+    #Reset the initial Bool value
+    isValid = False
+    while(not isValid):
+        
+        #Gets the zip code
+        if (j == 1 and peopleCount > 1):
+           zipCode = input('What is the first person\'s zip code? ')
+
+        elif (peopleCount == 1):
+            zipCode = input('What is the person\'s zip code? ')
+
+        elif (j == 2):
+            zipCode = input('What is the second person\'s zip code? ')
+     
+        elif (j == 3):
+            zipCode = input('What is the third person\'s zip code? ')
+       
+        else:
+            zipCode = input('What is the ' +str(j)+'th person\'s zip code? ')
+        
+
+        for idx in range(len(zipCode)):
+            # Error check to ensure the Street Name is alpha only
+            #Prints a message and lets the user re-enter the name 
+            if (zipCode[idx].isnumeric() == True or len(zipCode) > 2 or len(zipCode) < 5):
+                print('Invalid Input: Zip code should consist of five numbers only')
+                break
+            elif (idx == len(stateName) - 1):
+                address.append(strtNum + ' ' + strtName + ', ' + cityName + ', ' + stateName.upper() + ', ' + zipCode + '.')
+                isValid = True
+                    
+        
+    k = 0
+    while k < peopleCount:
+        print(firstName[k], ' ', lastName[k], 'aged', age[k], 'years, works as a', occupation[k], 'lives at', address[k])
+    i += 1 
+   
