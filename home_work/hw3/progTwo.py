@@ -36,22 +36,18 @@ while i < peopleCount:
         #Gets the first name
         if (j == 1 and peopleCount > 1):
            fname = input('What is the first person\'s first name? ')
-           j += 1
 
         elif (peopleCount == 1):
             fname = input('What is the person\'s first name? ')
 
         elif (j == 2):
             fname = input('What is the second person\'s first name? ')
-            j += 1
 
         elif (j == 3):
             fname = input('What is the third person\'s first name? ')
-            j += 1
 
         else:
             fname = input('What is the ' +str(j)+'th person\'s first name? ')
-            j += 1
 
         for idx in range(len(fname)):
             # Error check to ensure the name is alpha only
@@ -290,33 +286,35 @@ while i < peopleCount:
         #Gets the zip code
         if (j == 1 and peopleCount > 1):
            zipCode = input('What is the first person\'s zip code? ')
+           j += 1
 
         elif (peopleCount == 1):
             zipCode = input('What is the person\'s zip code? ')
 
         elif (j == 2):
             zipCode = input('What is the second person\'s zip code? ')
+            j += 1
      
         elif (j == 3):
             zipCode = input('What is the third person\'s zip code? ')
-       
+            j += 1
+
         else:
             zipCode = input('What is the ' +str(j)+'th person\'s zip code? ')
-        
+            j += 1
 
         for idx in range(len(zipCode)):
             # Error check to ensure the Street Name is alpha only
             #Prints a message and lets the user re-enter the name 
-            if (zipCode[idx].isnumeric() == True or len(zipCode) > 2 or len(zipCode) < 5):
+            if (zipCode[idx].isnumeric() == False or len(zipCode) != 5):
                 print('Invalid Input: Zip code should consist of five numbers only')
                 break
             elif (idx == len(stateName) - 1):
                 address.append(strtNum + ' ' + strtName + ', ' + cityName + ', ' + stateName.upper() + ', ' + zipCode + '.')
                 isValid = True
                     
-        
-    k = 0
-    while k < peopleCount:
-        print(firstName[k], ' ', lastName[k], 'aged', age[k], 'years, works as a', occupation[k], 'lives at', address[k])
-    i += 1 
-   
+    i += 1    
+k = 0
+while k < peopleCount:
+    print(firstName[k], lastName[k], 'aged', age[k], 'years, works as a', occupation[k], 'lives at', address[k])
+    k += 1   
