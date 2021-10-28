@@ -37,13 +37,61 @@ Note:
  string after the digits.
 '''
 
-def myAtoi(s):
-    isNeg = False
-    s = s.strip()
+def myStoi(s):
+   isNeg = False
+   numAdded = False
+   s = s.strip()
+   
+   if s[0] == '-':
+       isNeg = True
 
-    if s[0] == '-':
-        isNeg = True
+   number = ''
 
-    for idx in range(len(s)):
-        if (s[idx].isnumeric() == True):
-            number += s[idx]
+   for idx in range(len(s)):
+       if (s[idx].isnumeric() == True):
+           number += s[idx]
+           numAdded = True
+           if(s[idx-1].isnumeric() == True and s[idx].isnumeric() == False):
+              break
+
+   number = int(number)
+
+   if isNeg: #Return a negative value
+      number = (-1) * number
+
+   if number < -(2**31): #Keep the int value within the min int size
+      print("That number was too small and will be clamped to the min int size.")
+      return str(-(2**31))
+   elif number > (2**31 - 1): #Keep the int value within the max int size
+      print("That number was too large and will be clamped to the max int size.")
+      return str(2**31-1)
+   elif numAdded:
+      return str(number)
+   else:
+      return '0'
+
+
+loopAgain = True
+
+while loopAgain:
+   
+   numString = input('Please enter a string: ')
+
+   convertedNum = myStoi(numString)
+
+   print('The number in that string is ' + convertedNum)
+
+   answer = input('Enter another? Yes/No: ')
+
+   answer = answer.lower()
+   
+   invalidAnswer = True
+   while invalidAnswer:
+      if answer == 'yes':
+         invalidAnswer = False
+      elif answer == 'no':
+         invalidAnswer = False
+         print("Good day.\n\n\n\n\n\n\nI said good day!")
+         loopAgain = False
+      else:
+         print("Invalid response: Yes or No")
