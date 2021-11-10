@@ -10,18 +10,17 @@ account; either saving or checking or both. Implement the scenario using python 
 and make sure you have covered those OOP concepts on your code: inheritance(any),
 polymorphism (runtime and compile time), abstraction and encapsulation.
 '''
-
+import random
 
 class BankAccount:
-
-    def __init__(self, name, CheckingAccount, SavingsAccount):
+    #, CheckingAccount, SavingsAccount
+    def __init__(self, name, _acctNum, _balance):
         self.name = name
-        self.age = age
         self._balance = _balance
+        self._acctNum = _acctNum
 
     def get_info(self):
         print("Name:\t{}".format(self.name))
-        print("Age: \t{}".format(self.age))
         self.print_balance()
 
     def get_balance(self):
@@ -42,14 +41,13 @@ def deposit_money(self, amount):
 
 class SavingAccount(BankAccount):
 
-    def __init__(self, name, age, balance, interest_rate):
-        BankAccount.__init__(self, name, age, balance)
+    def __init__(self, name, balance, interest_rate):
+        BankAccount.__init__(self, name, balance)
         self._interest_rate = interest_rate
 
     def get_info(self):
         print("Account Type: Savings")
         print("Name:\t{}".format(self.name))
-        print("Age: \t{}".format(self.age))
         self.print_balance()
         self.print_interest_rate()
 
@@ -74,14 +72,13 @@ class SavingAccount(BankAccount):
 
 class CheckingAccount(BankAccount):
 
-    def __init__(self, name, age, balance, checks_issued):
-        BankAccount.__init__(self, name, age, balance)
+    def __init__(self, name, balance, checks_issued):
+        BankAccount.__init__(self, name, balance)
         self._checks_issued = checks_issued
 
     def get_info(self):
         print("Account Type: Current")
         print("Name:\t{}".format(self.name))
-        print("Age: \t{}".format(self.age))
         self.print_balance()
         self.print_checks()
 
@@ -101,22 +98,22 @@ class CheckingAccount(BankAccount):
 
 class Customer(SavingAccount, CheckingAccount):
 
-    def __init__(self, name, age, balance, type):
+    def __init__(self, name, balance, type):
         self.type = type
 
         if(type == "s"):
             interest_rate = int(input("Enter interest rate: "))
-            SavingAccount.__init__(self, name, age, balance, interest_rate)
+            SavingAccount.__init__(self, name, balance, interest_rate)
 
         if(type == "c"):
             checks_issued = int(input("Enter number of checks: "))
-            CheckingAccount.__init__(self, name, age, balance, checks_issued)
+            CheckingAccount.__init__(self, name, balance, checks_issued)
 
         if(type == "s+c" or type == "c+s"):
             rate = int(input("Enter interest rate: "))
             checks_issued = int(input("Enter number of checks: "))
-            SavingAccount.__init__(self, name, age, balance, rate)
-            CheckingAccount.__init__(self, name, age, balance, checks_issued)
+            SavingAccount.__init__(self, name, balance, rate)
+            CheckingAccount.__init__(self, name, balance, checks_issued)
 
     def get_info(self):
 
@@ -129,7 +126,6 @@ class Customer(SavingAccount, CheckingAccount):
         else:
             print("Account Type: Savings + Checking")
             print("Name:\t{}".format(self.name))
-            print("Age: \t{}".format(self.age))
             self.print_balance()
             self.print_interest_rate()
             self.print_checks()
@@ -151,7 +147,13 @@ while Selection != 8:
 
     Selection = input()
     if Selection == '1':
-        BankAccount()
+        n = input('Please enter your name: ')
+        accountNum = random.randint(0, 999999)
+        print("Your new account number is {0:06}".format(accountNum))
+        b = input('Enter your deposit amount: ')
+        b = int(b)
+        print('You are depositing: {0:.2f}'.format(b))
+        BankAccount(n, accountNum, b)
 
     elif Selection == '2':
         num = int(input("\tEnter The account No. : "))
