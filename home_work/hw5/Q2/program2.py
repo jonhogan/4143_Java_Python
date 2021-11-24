@@ -6,6 +6,15 @@ Due         11/24/21
 (30 points) Given the expression as string str, find the duplicate parenthesis from the
 expression. Your program will output whether or not finding the duplicates, that is true of
 false
+
+#########################################################################################
+#########################################################################################
+##  Take this out                                                                      ##
+##                                                                                     ##
+##  Look at program 1 of HW4 for the file read code                                    ##
+##                                                                                     ##
+#########################################################################################
+#########################################################################################
 '''
 
 
