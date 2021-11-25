@@ -3,64 +3,59 @@ Author      Jonathan Hogan
 Class       Dr.Das - CMPS 4143 Contemporary Programming Languages
 Due         11/24/21
 
-(30 points) Given the expression as string str, find the duplicate parenthesis from the
+(30 points) Given the expression as strs str, find the duplicate parenthesis from the
 expression. Your program will output whether or not finding the duplicates, that is true of
 false
 
-#########################################################################################
-#########################################################################################
-##  Take this out                                                                      ##
-##                                                                                     ##
-##  Look at program 1 of HW4 for the file read code                                    ##
-##                                                                                     ##
-#########################################################################################
-#########################################################################################
 '''
 
 
-def paren_dupes(string):
+def paren_dupes(strs):
  
-    # create a stack of characters
-    Stack = []
+    #Create a stack for chars
+    charstack = []
  
-    # Iterate through the given expression
-    for ch in string:
+    #Read through the string
+    for chars in strs:
      
-        # if current character is
-        # close parenthesis ')'
-        if ch == ')':
-         
-            # pop character from the stack
-            top = Stack.pop()
- 
-            # stores the number of characters between
-            # a closing and opening parenthesis
-            # if this count is less than or equal to 1
-            # then the brackets are redundant else not
-            elementsInside = 0
+        #Check for a close paren
+        if chars == ')':
+            top = charstack.pop()
+            parens = 0
+
             while top != '(':
-             
-                elementsInside += 1
-                top = Stack.pop()
-             
-            if elementsInside < 1:
+                parens += 1
+                top = charstack.pop()
+
+            #If dupes are found 
+            if parens < 1:
                 return True
- 
-        # push open parenthesis '(', operators
-        # and operands to stack
+
         else:
-            Stack.append(ch)
+            charstack.append(chars)
      
-    # No duplicates found
+    #If no dupes are found
     return False
  
-# Driver Code
-if __name__ == "__main__":
+
  
-    # input balanced expression
-    string = "(((a+(b))+(c+d)))"
+validFile = False
+#Loop to get a file name from the users, and verify that a valid file was entered
+while validFile == False:
+  fileOpen = True
+  try:
+    inFile = open(input('Enter the name of the file you want to open: '))
+  
+  #Invalid file name check
+  except FileNotFoundError:
+    print('Invalid file name. Please check the name and path of the file you are trying to read from.')
+    print('Default file name is input.dat')
+    #Flag to run the if statement to flip the validFile bool and exit the loop
+    fileOpen = False
+  if fileOpen:
+    validFile = True
+
+for line in inFile: #read line 
+    strs = line
  
-    if paren_dupes(string) == True:
-        print("Duplicate Found")
-    else:
-        print("No Duplicates Found")
+    print(paren_dupes(strs))
