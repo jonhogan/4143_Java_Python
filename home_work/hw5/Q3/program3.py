@@ -10,9 +10,6 @@ program with queue and or stack data structure
 
 '''
 
-from typing import AsyncGenerator
-
-
 class StackClass:
     def __init__(self):
         self.stack = []
@@ -42,26 +39,31 @@ class StackClass:
         return self.stack[element]
 
     def get_avg_list(self, window):
-        for ele in range(len(self.stack.get)):
+        print(self.stack)
+        
+        avgstack = []
+        sum_list = []
+
+        while not self.is_empty():
+
+          while len(sum_list) < window:
+
+            sum = 0
             count = 0
-            offset = 0
-            if (ele - window) < 0:
-                offset = ele
-                while (offset - window) < 0:
-                    offset += 1
 
-                if (offset - window) == 0:
-                    avgstack.push(mystack[0])
-                else:
-                    for i in range(offset-window):
-                    sum += mystack[i]
-                    count += 1
-                avgstack.push(sum/count)
-        else:
-            for element in mystack[(ele - window): ele]:
-                sum += element
+            temp = self.stack.pop(0)
+            sum_list.append(temp)
 
-        avgstack.push(sum/window)
+            for num in sum_list:
+
+              sum += num
+              count += 1
+
+            avgstack.append(sum / count)
+
+          if len(sum_list) == window:
+
+            sum_list.pop(0)
 
         print(avgstack)
 
@@ -108,29 +110,5 @@ for num in range(num_count):
     
         else:
             print('Invalid Input: Please enter a number\n\n\n')
-'''
-avgstack = StackClass()
 
-for ele in range(mystack.get_size()):
-    count = 0
-    offset = 0
-    if (ele - window) < 0:
-        offset = ele
-        while (offset - window) < 0:
-            offset += 1
-
-        if (offset - window) == 0:
-            avgstack.push(mystack[0])
-        else:
-            for i in range(offset-window):
-                sum += mystack[i]
-                count += 1
-            avgstack.push(sum/count)
-    else:
-        for element in mystack[(ele - window): ele]:
-            sum += element
-
-        avgstack.push(sum/window)
-
-print(avgstack)
-'''
+mystack.get_avg_list(window)
