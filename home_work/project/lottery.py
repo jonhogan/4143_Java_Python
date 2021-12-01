@@ -11,10 +11,10 @@
 #    give the user a very efficient and visual representation as to how the#
 #    lottery is played and how it works. Our Proposal to create this       #
 #    program turned out to be very successful and create a working GUI in  #
-#    which the user can streract with the GUI and the buttons and labels   #
+#    which the user can interact with the GUI and the buttons and labels   #
 #    and see how they can choose ( such as a quick pick ) when one goes    #
 #    to a convenience store and choose a computer generated number and then#
-#    they are able to compare thier number with the winning number to see  #
+#    they are able to compare their number with the winning number to see  #
 #    if they won. This also shows the user just how complex it can be abd  #
 #    the odds of all six numbers matching up is astronomically low to get  #
 #    all the same numbers. with each of the regular balls having random    #
@@ -24,7 +24,7 @@
 
 # first create our imports tkstrer and random
 import tkinter as tk
-from tkinter import Button
+from tkinter import Button,PhotoImage
 import random # importing the random for rand number generator
 
 
@@ -66,27 +66,32 @@ def LotteryBallDrawing():
     
     while repeat:
         ThirdNumber.configure(text=str(random.randint(1,70)))
-        if ThirdNumber != FirstNumber and ThirdNumber!=FirstNumber:
+        if ThirdNumber != FirstNumber and ThirdNumber!=SecondNumber:
             repeat = False
 
     
     #creating the fourth number
     # for error checking check that doesnt match any of the others
     FourthNumber.configure(text=str(random.randint(1,70)))
-    if FourthNumber==ThirdNumber or FourthNumber==SecondNumber or FourthNumber==FirstNumber:
+    if (FourthNumber==ThirdNumber or FourthNumber==SecondNumber or FourthNumber==FirstNumber):
         repeat = True
     while repeat:
         FourthNumber.configure(text=str(random.randint(1,70)))
-        if FourthNumber != FirstNumber and ThirdNumber!=SecondNumber and FourthNumber!=FirstNumber:
+        if (FourthNumber != FirstNumber and ThirdNumber!=SecondNumber
+             and FourthNumber!=FirstNumber):
+
             repeat = False
 
     #fifth number and error check to make sure no repeats
     FifthNumber.configure(text=str(random.randint(1,70)))
-    if FifthNumber==FourthNumber or FifthNumber==ThirdNumber or FifthNumber==SecondNumber or FifthNumber==FirstNumber:
+    if (FifthNumber==FourthNumber or FifthNumber==ThirdNumber
+               or FifthNumber==SecondNumber or FifthNumber==FirstNumber):
+
         repeat = True
     while repeat:
         FifthNumber.configure(text=str(random.randint(1,70)))
-        if FifthNumber!=FourthNumber and FifthNumber!= ThirdNumber and FifthNumber!=SecondNumber and FifthNumber!=FirstNumber:
+        if (FifthNumber!=FourthNumber and FifthNumber!= ThirdNumber 
+            and FifthNumber!=SecondNumber and FifthNumber!=FirstNumber):
             repeat = False
     
   
@@ -104,12 +109,10 @@ def ResetDrawing():
   FourthNumber.configure(text='0')
   FifthNumber.configure(text='0')
   MultiplierNumber.configure(text='MultiPlier')
-# hello there :) lol
-# Hell   here :)
 
 
-
-# create the basis for the winning number that will be utilized whenever comparing to winning number
+# create the basis for the winning number that will be utilized 
+# whenever comparing to winning number
 def Winning_Number():
     #numbers = []
     repeat = False
@@ -143,7 +146,7 @@ def Winning_Number():
     # loop until there is not a repeat
     while repeat:
         NumberThree.configure(text=str(random.randint(1,70)))
-        if NumberThree != NumberOne and NumberThree!=NumberOne:
+        if NumberThree != NumberOne and NumberThree!= NumberTwo:
             repeat = False
     # create number four and check if is repeat value
     NumberFour.configure(text=str(random.randint(1,70)))
@@ -152,16 +155,20 @@ def Winning_Number():
     # if it is, loop until non repeat found
     while repeat:
         NumberFour.configure(text=str(random.randint(1,70)))
-        if NumberFour != NumberOne and NumberThree!=NumberTwo and NumberFour!=NumberOne:
+        if (NumberFour != NumberOne and NumberThree!=NumberTwo and NumberFour!=NumberOne):
             repeat = False
     # create number five for display in the label
     # error check to make sure it doesnt display a number already picked
     NumberFive.configure(text=str(random.randint(1,70)))
-    if NumberFive==NumberFour or NumberFive==NumberThree or NumberFive==NumberTwo or NumberFive==NumberOne:
+    if (NumberFive==NumberFour or NumberFive==NumberThree or
+     NumberFive==NumberTwo or NumberFive==NumberOne):
+
         repeat = True
     while repeat:
         NumberFive.configure(text=str(random.randint(1,70)))
-        if NumberFive!=NumberFour and NumberFive!= NumberThree and NumberFive!=NumberTwo and NumberFive!=NumberOne:
+        if (NumberFive!=NumberFour and NumberFive!= NumberThree and 
+        NumberFive!=NumberTwo and NumberFive!=NumberOne):
+
             repeat = False
     #numbers.append(NumberFive)
 
@@ -170,7 +177,8 @@ def Winning_Number():
     MultiplyNumber.configure(text=str(random.randint(1,25)))
 
 # create the definition of the the drawing reset to generate more numbers
-# in the definition all the generated values will be reset and replaced to a default value of 0 until the next set is generated
+# in the definition all the generated values will be reset and replaced to a 
+# default value of 0 until the next set is generated
 
 
 # Winning Number Generator For Max Prize
@@ -184,13 +192,27 @@ def ResetWinningNumbers():
     NumberFive.configure(text='0')
     MultiplyNumber.configure(text='M')
 
+# define the action of the close button
+def Close():
+    LotterySimulation.destroy()
+
+
+# ---- main portion of the label creations and buttons------
 
 # creating the window for the program to open up in a GUI
 LotterySimulation = tk.Tk()
 
+# add the title and the dimensions of the window and  upload picture
+# for the bakcground
 LotterySimulation.title(' Ethan Coyle and Jonathan Hogan Lottery Simulation')
 LotterySimulation.geometry('750x275')
-LotterySimulation.config(bg='Silver')
+# LotterySimulation.config(bg='Teal')
+
+
+# create image for out background and set it as a label that holds the picture
+bg= PhotoImage(file='lotto-ticket.png')
+BackgroundLabel=tk.Label(LotterySimulation,image=bg)
+BackgroundLabel.place(x=0,y=0,relwidth=1,relheight=1)
 
 
 # create a link to the drawing random number lottery generator to draw five rand
@@ -218,6 +240,12 @@ WinningLotteryNum.pack(side=tk.TOP, anchor=tk.NW)
 ResetWinningNumber = Button(LotterySimulation, width=20, height=1,text=' Reset Winning Number', command =ResetWinningNumbers)
 ResetWinningNumber.configure(fg = 'Black' ,bg = 'Gold')
 ResetWinningNumber.pack(side=tk.TOP, anchor=tk.NW)
+
+# creating a button that closes the simulation
+# whenever it is clicked, goes to function definition which closes out of the program
+CloseSimulation = Button(LotterySimulation,width=20, height=1, text='Close Simulation', command=Close)
+CloseSimulation.configure(fg = 'White' ,bg = 'Red')
+CloseSimulation.pack(side=tk.TOP, anchor=tk.NW)
 
 # we are setting up the basis for our own lottery number GeneratorExit
 # in this we are utlizing the definition call function to Generate
